@@ -52,17 +52,17 @@
             <!-- total job number -->
             <div class="p-4 rounded-lg bg-white">
                 <h1 class="gray-text">total</h1>
-                <p class="font-bold main-color text-2xl">8</p>
+                <p id="total" class="font-bold main-color text-2xl">8</p>
             </div>
             <!-- total job number -->
             <div class="p-4 rounded-lg bg-white">
                 <h1 class="gray-text">Interview</h1>
-                <p class="font-bold interview-color text-2xl">0</p>
+                <p id="interviewCount" class="font-bold interview-color text-2xl">0</p>
             </div>
             <!-- total job number -->
             <div class="p-4 rounded-lg bg-white">
                 <h1 class="gray-text">Rejected</h1>
-                <p class="font-bold rejected-color text-2xl">0</p>
+                <p id="rejectedCount" class="font-bold rejected-color text-2xl">0</p>
             </div>
         </section>
     </header>
@@ -77,7 +77,7 @@
     </section>
 
     <!-- jobs button & cards -->
-    <section class=" max-w-[1048px] mx-auto">
+    <section class=" max-w-[1048px] mx-auto pb-8">
         <!-- category button -->
         <div class="flex gap-4 mb-8">
             <button class="btn bg-blue-500 text-white min-w-[80px]">All</button>
@@ -298,6 +298,8 @@
         
     </section>
 
+    <!-- scripts -->
+    <script src="./scripts/jobTracker.js"></script>
 </body>
 
 </html>
