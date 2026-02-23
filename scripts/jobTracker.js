@@ -43,3 +43,23 @@ function toggleStyle(id){
     selected.classList.remove('bg-white', 'gray-text');
     selected.classList.add('bg-blue-500', 'text-white');
 }
+
+mainContainer.addEventListener('click', function(event){
+    const parentNode = event.target.parentNode.parentNode;
+    const jobName = parentNode.querySelector('.job-name').innerText;
+    const jobDesignation = parentNode.querySelector('.job-designation').innerText;
+    const jobPlace = parentNode.querySelector('.job-place').innerText;
+    const jobTime = parentNode.querySelector('.job-time').innerText;
+    const jobMoney = parentNode.querySelector('.job-money').innerText;
+    const jobDescription = parentNode.querySelector('.job-description').innerText;
+
+    const cardInfo = {
+        jobName,
+        jobDesignation,
+        jobPlace,
+        jobTime,
+        jobMoney,
+        jobDescription
+    }
+    console.log(cardInfo);
+})
