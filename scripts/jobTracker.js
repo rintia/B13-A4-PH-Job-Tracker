@@ -19,7 +19,7 @@ const rejectedFilterBtn = document.getElementById('rejected-filter-btn');
 const filteredSection = document.getElementById('filtered-section');
 const rejectSection = document.getElementById('reject-section');
 
-console.log(mainContainer);
+// console.log(mainContainer);
 
 // console.log(allCardsSection.children);
 
@@ -54,6 +54,7 @@ function toggleStyle(id) {
         rejectSection.classList.add('hidden');
         filteredSection.classList.remove('hidden');
         jobNumber.innerText = interViewList.length;
+        renderInterview();
     }
     else if(id == 'all-filter-btn'){
         allCardsSection.classList.remove('hidden');
@@ -66,14 +67,27 @@ function toggleStyle(id) {
         filteredSection.classList.add('hidden');
         rejectSection.classList.remove('hidden');
         jobNumber.innerText = rejectedList.length;
+        renderReject();
     }
+}
+
+function deleteCard(id){
+    const card = document.getElementById(id);
+    console.log(card);
+    card.remove();
 }
 
 mainContainer.addEventListener('click', function (event) {
 
+    // if(event.target.classList.contains('delete-btn')){
+    //     const parentNode = event.target.parentNode.parentNode;
+    //     console.log('clicked');
+    //     parentNode.remove();
+    // }
 
     if (event.target.classList.contains('interview-btn')) {
 
+        console.log('interview');
         const parentNode = event.target.parentNode.parentNode;
         const jobName = parentNode.querySelector('.job-name').innerText;
         const jobDesignation = parentNode.querySelector('.job-designation').innerText;
@@ -105,13 +119,12 @@ mainContainer.addEventListener('click', function (event) {
 
         rejectedList = rejectedList.filter(item => item.jobName != cardInfo.jobName);
 
-        // if(currentStatus == 'rejected-filter-btn'){
-            
-        // }
+        if(currentStatus == 'rejected-filter-btn'){
+            renderReject();
+        }
         
         calculateCount();
 
-        renderInterview();
 
         
     }
@@ -147,10 +160,17 @@ mainContainer.addEventListener('click', function (event) {
 
         interViewList = interViewList.filter(item => item.jobName != cardInfo.jobName)
 
+        
+
+        if(currentStatus == 'interview-filter-btn'){
+            renderInterview();
+        }
         calculateCount();
 
-        renderReject();
+        // renderReject();
     }
+
+    
 
 })
 
