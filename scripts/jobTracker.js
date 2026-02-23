@@ -14,13 +14,15 @@ const allFilterBtn = document.getElementById('all-filter-btn');
 const interviewFilterBtn = document.getElementById('interview-filter-btn');
 const rejectedFilterBtn = document.getElementById('rejected-filter-btn');
 
+const filteredSection = document.getElementById('filtered-section');
+
 console.log(mainContainer);
 
 // console.log(allCardsSection.children);
 
 
 
-function calculateCount(){
+function calculateCount() {
     total.innerText = allCardsSection.children.length;
     interviewCount.innerText = interViewList.length;
     rejectedCount.innerText = rejectedList.length
@@ -29,7 +31,7 @@ function calculateCount(){
 
 calculateCount();
 
-function toggleStyle(id){
+function toggleStyle(id) {
     allFilterBtn.classList.remove('bg-blue-500', 'text-white');
     interviewFilterBtn.classList.remove('bg-blue-500', 'text-white');
     rejectedFilterBtn.classList.remove('bg-blue-500', 'text-white');
@@ -44,22 +46,73 @@ function toggleStyle(id){
     selected.classList.add('bg-blue-500', 'text-white');
 }
 
-mainContainer.addEventListener('click', function(event){
-    const parentNode = event.target.parentNode.parentNode;
-    const jobName = parentNode.querySelector('.job-name').innerText;
-    const jobDesignation = parentNode.querySelector('.job-designation').innerText;
-    const jobPlace = parentNode.querySelector('.job-place').innerText;
-    const jobTime = parentNode.querySelector('.job-time').innerText;
-    const jobMoney = parentNode.querySelector('.job-money').innerText;
-    const jobDescription = parentNode.querySelector('.job-description').innerText;
+mainContainer.addEventListener('click', function (event) {
 
-    const cardInfo = {
-        jobName,
-        jobDesignation,
-        jobPlace,
-        jobTime,
-        jobMoney,
-        jobDescription
+
+    if (event.target.classList.contains('interview-btn')) {
+
+        const parentNode = event.target.parentNode.parentNode;
+        const jobName = parentNode.querySelector('.job-name').innerText;
+        const jobDesignation = parentNode.querySelector('.job-designation').innerText;
+        const jobBadge = parentNode.querySelector('.badge');
+        const jobPlace = parentNode.querySelector('.job-place').innerText;
+        const jobTime = parentNode.querySelector('.job-time').innerText;
+        const jobMoney = parentNode.querySelector('.job-money').innerText;
+        const jobDescription = parentNode.querySelector('.job-description').innerText;
+        jobBadge.innerText = 'Interview';
+        jobBadge.classList.add('bg-green-100')
+
+        const cardInfo = {
+            jobName,
+            jobDesignation,
+            jobPlace,
+            jobTime,
+            jobMoney,
+            jobDescription
+        }
+
+        const jobExist = interViewList.find(item => item.jobName == cardInfo.jobName);
+
+        if (!jobExist) {
+            interViewList.push(cardInfo);
+        }
+
+        renderInterview();
     }
-    console.log(cardInfo);
+
 })
+
+function renderInterview() {
+    filteredSection.innerHTML = '';
+
+    for (let interview of interViewList) {
+        console.log(interview);
+        let div = document.createElement('div');
+        div.className = "bg-white rounded-lg p-7 space-y-4";
+        div.innerHTML = `
+        <div>
+        <div class="flex justify-between">
+            <h1 class="job-name text-xl font-bold main-color mb-1">Mobile First Crop</h1>
+            <!-- delete button -->
+            <button class="btn border-none bg-white shadow-none p-0"><i
+                    class="fa-regular fa-trash-can"></i></button>
+        </div>
+
+        <p class="job-designation gray-color">Native React Developer</p>
+    </div>
+    <p class="gray-color text-sm space-x-3"><span class="job-place">Remote </span>• <span class="job-time">Full-time </span> <span class="job-money">• $130,000 -
+            $175,000</span></p>
+    <!-- badge -->
+    <div class="badge badge-md bg-[#EEF4FF] main-color p-4 font-bold">NOT APPLIED</div>
+    <p class="job-description">Build cross-platform mobile applications using React Native. Work on products used by millions of users
+        worldwide.</p>
+
+
+    <!-- buttons -->
+    <div class="space-x-2">
+        <button class="btn btn-outline text-[#10B981] hover:bg-[#10B981] hover:text-white">Interview</button>
+        <button class="btn btn-outline text-[#EF4444] hover:bg-[#EF4444] hover:text-white">Rejected</button>
+    </div>
+        `
+    }
+}

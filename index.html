@@ -67,9 +67,9 @@
         </section>
     </header>
 
-   <main>
+   <main class="max-w-[1048px] mx-auto pt-8">
      <!-- jobs -->
-     <section class="max-w-[1048px] mx-auto pt-8">
+     <section >
         <!-- jobs header container -->
         <div class="flex justify-between items-center mb-8">
             <h2 class="main-color font-bold text-xl">Available Jobs</h2>
@@ -85,6 +85,12 @@
             <button onclick="toggleStyle('interview-filter-btn')" id="interview-filter-btn" class="btn bg-white gray-text min-w-[80px]">Interview</button>
             <button onclick="toggleStyle('rejected-filter-btn')" id="rejected-filter-btn" class="btn bg-white gray-text min-w-[80px]">Rejected</button>
         </div>
+
+        <!-- filtered section -->
+        <section id="filtered-section">
+
+        </section>
+
         <!-- job cards -->
         <div id="allCards" class="space-y-8">
             <!-- card-1 -->
@@ -109,8 +115,8 @@
 
             <!-- buttons -->
             <div class="space-x-2">
-                <button class="btn btn-outline text-[#10B981] hover:bg-[#10B981] hover:text-white">Interview</button>
-                <button class="btn btn-outline text-[#EF4444] hover:bg-[#EF4444] hover:text-white">Rejected</button>
+                <button  class="btn btn-outline interview-btn text-[#10B981] hover:bg-[#10B981] hover:text-white">Interview</button>
+                <button class="btn btn-outline rejected-btn text-[#EF4444] hover:bg-[#EF4444] hover:text-white">Rejected</button>
             </div>
         </div>
             <!-- card-2 -->
@@ -135,8 +141,8 @@
 
             <!-- buttons -->
             <div class="space-x-2">
-                <button class="btn btn-outline text-[#10B981] hover:bg-[#10B981] hover:text-white">Interview</button>
-                <button class="btn btn-outline text-[#EF4444] hover:bg-[#EF4444] hover:text-white">Rejected</button>
+                <button class="btn btn-outline text-[#10B981] hover:bg-[#10B981] hover:text-white interview-btn">Interview</button>
+                <button class="btn btn-outline text-[#EF4444] hover:bg-[#EF4444] hover:text-white rejected-btn">Rejected</button>
             </div>
         </div>
             <!-- card-3 -->
@@ -160,8 +166,8 @@
 
             <!-- buttons -->
             <div class="space-x-2">
-                <button class="btn btn-outline text-[#10B981] hover:bg-[#10B981] hover:text-white">Interview</button>
-                <button class="btn btn-outline text-[#EF4444] hover:bg-[#EF4444] hover:text-white">Rejected</button>
+                <button class="btn btn-outline text-[#10B981] hover:bg-[#10B981] hover:text-white interview-btn">Interview</button>
+                <button class="btn btn-outline text-[#EF4444] hover:bg-[#EF4444] hover:text-white rejected-btn">Rejected</button>
             </div>
         </div>
             <!-- card-4 -->
@@ -185,8 +191,8 @@
 
             <!-- buttons -->
             <div class="space-x-2">
-                <button class="btn btn-outline text-[#10B981] hover:bg-[#10B981] hover:text-white">Interview</button>
-                <button class="btn btn-outline text-[#EF4444] hover:bg-[#EF4444] hover:text-white">Rejected</button>
+                <button class="btn btn-outline text-[#10B981] hover:bg-[#10B981] hover:text-white interview-btn">Interview</button>
+                <button class="btn btn-outline text-[#EF4444] hover:bg-[#EF4444] hover:text-white rejected-btn">Rejected</button>
             </div>
         </div>
             <!-- card-5 -->
@@ -210,8 +216,8 @@
 
             <!-- buttons -->
             <div class="space-x-2">
-                <button class="btn btn-outline text-[#10B981] hover:bg-[#10B981] hover:text-white">Interview</button>
-                <button class="btn btn-outline text-[#EF4444] hover:bg-[#EF4444] hover:text-white">Rejected</button>
+                <button class="btn btn-outline text-[#10B981] hover:bg-[#10B981] hover:text-white interview-btn">Interview</button>
+                <button class="btn btn-outline text-[#EF4444] hover:bg-[#EF4444] hover:text-white rejected-btn">Rejected</button>
             </div>
         </div>
             <!-- card-6 -->
@@ -235,8 +241,8 @@
 
             <!-- buttons -->
             <div class="space-x-2">
-                <button class="btn btn-outline text-[#10B981] hover:bg-[#10B981] hover:text-white">Interview</button>
-                <button class="btn btn-outline text-[#EF4444] hover:bg-[#EF4444] hover:text-white">Rejected</button>
+                <button class="btn btn-outline text-[#10B981] hover:bg-[#10B981] hover:text-white interview-btn">Interview</button>
+                <button class="btn btn-outline text-[#EF4444] hover:bg-[#EF4444] hover:text-white rejected-btn">Rejected</button>
             </div>
         </div>
             <!-- card-7 -->
@@ -260,8 +266,8 @@
 
             <!-- buttons -->
             <div class="space-x-2">
-                <button class="btn btn-outline text-[#10B981] hover:bg-[#10B981] hover:text-white">Interview</button>
-                <button class="btn btn-outline text-[#EF4444] hover:bg-[#EF4444] hover:text-white">Rejected</button>
+                <button class="btn btn-outline text-[#10B981] hover:bg-[#10B981] hover:text-white interview-btn">Interview</button>
+                <button class="btn btn-outline text-[#EF4444] hover:bg-[#EF4444] hover:text-white rejected-btn">Rejected</button>
             </div>
         </div>
             <!-- card-8 -->
@@ -285,8 +291,8 @@
 
             <!-- buttons -->
             <div class="space-x-2">
-                <button class="btn btn-outline text-[#10B981] hover:bg-[#10B981] hover:text-white">Interview</button>
-                <button class="btn btn-outline text-[#EF4444] hover:bg-[#EF4444] hover:text-white">Rejected</button>
+                <button class="btn btn-outline text-[#10B981] hover:bg-[#10B981] hover:text-white interview-btn">Interview</button>
+                <button class="btn btn-outline text-[#EF4444] hover:bg-[#EF4444] hover:text-white rejected-btn">Rejected</button>
             </div>
         </div>
         </div>
