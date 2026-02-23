@@ -65,6 +65,7 @@ mainContainer.addEventListener('click', function (event) {
         const cardInfo = {
             jobName,
             jobDesignation,
+            jobBadge,
             jobPlace,
             jobTime,
             jobMoney,
@@ -88,24 +89,22 @@ function renderInterview() {
     for (let interview of interViewList) {
         console.log(interview);
         let div = document.createElement('div');
-        div.className = "bg-white rounded-lg p-7 space-y-4";
+        div.className = "bg-white rounded-lg p-7 space-y-4 mb-8";
         div.innerHTML = `
         <div>
         <div class="flex justify-between">
-            <h1 class="job-name text-xl font-bold main-color mb-1">Mobile First Crop</h1>
+    <h1 class="job-name text-xl font-bold main-color mb-1">${interview.jobName}</h1>
             <!-- delete button -->
             <button class="btn border-none bg-white shadow-none p-0"><i
                     class="fa-regular fa-trash-can"></i></button>
         </div>
 
-        <p class="job-designation gray-color">Native React Developer</p>
+        <p class="job-designation gray-color">${interview.jobDesignation}</p>
     </div>
-    <p class="gray-color text-sm space-x-3"><span class="job-place">Remote </span>• <span class="job-time">Full-time </span> <span class="job-money">• $130,000 -
-            $175,000</span></p>
+<p class="gray-color text-sm space-x-3"><span class="job-place">${interview.jobPlace} </span>• <span class="job-time">${interview.jobTime} </span> <span class="job-money">${interview.jobMoney}</span></p>
     <!-- badge -->
-    <div class="badge badge-md bg-[#EEF4FF] main-color p-4 font-bold">NOT APPLIED</div>
-    <p class="job-description">Build cross-platform mobile applications using React Native. Work on products used by millions of users
-        worldwide.</p>
+    <div class="badge badge-md bg-[#EEF4FF] main-color p-4 font-bold">${interview.jobBadge.innerText}</div>
+    <p class="job-description">${interview.jobDescription}</p>
 
 
     <!-- buttons -->
@@ -114,5 +113,6 @@ function renderInterview() {
         <button class="btn btn-outline text-[#EF4444] hover:bg-[#EF4444] hover:text-white">Rejected</button>
     </div>
         `
+        filteredSection.appendChild(div);
     }
 }
