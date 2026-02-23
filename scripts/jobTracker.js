@@ -1,5 +1,6 @@
 let interViewList = [];
 let rejectedList = [];
+let currentStatus = 'all';
 
 let total = document.getElementById('total');
 let interviewCount = document.getElementById('interviewCount');
@@ -43,6 +44,7 @@ function toggleStyle(id) {
     rejectedFilterBtn.classList.add('bg-white', 'gray-text');
 
     const selected = document.getElementById(id);
+    currentStatus = id;
 
     selected.classList.remove('bg-white', 'gray-text');
     selected.classList.add('bg-blue-500', 'text-white');
@@ -101,11 +103,17 @@ mainContainer.addEventListener('click', function (event) {
         }
 
 
-        rejectedList = interViewList.filter(item => item.jobName != cardInfo.jobName);
+        rejectedList = rejectedList.filter(item => item.jobName != cardInfo.jobName);
+
+        // if(currentStatus == 'rejected-filter-btn'){
+            
+        // }
         
         calculateCount();
 
         renderInterview();
+
+        
     }
 
     else if (event.target.classList.contains('rejected-btn')) {
@@ -137,7 +145,7 @@ mainContainer.addEventListener('click', function (event) {
             rejectedList.push(cardInfo);
         }
 
-        interViewList = rejectedList.filter(item => item.jobName != cardInfo.jobName)
+        interViewList = interViewList.filter(item => item.jobName != cardInfo.jobName)
 
         calculateCount();
 
@@ -206,8 +214,8 @@ function renderReject() {
 
     <!-- buttons -->
     <div class="space-x-2">
-        <button class="btn btn-outline text-[#10B981] hover:bg-[#10B981] hover:text-white">Interview</button>
-        <button class="btn btn-outline text-[#EF4444] hover:bg-[#EF4444] hover:text-white">Rejected</button>
+        <button class="interview-btn btn btn-outline text-[#10B981] hover:bg-[#10B981] hover:text-white">Interview</button>
+        <button class="rejected-btn btn btn-outline text-[#EF4444] hover:bg-[#EF4444] hover:text-white">Rejected</button>
     </div>
         `
         rejectSection.appendChild(div);
