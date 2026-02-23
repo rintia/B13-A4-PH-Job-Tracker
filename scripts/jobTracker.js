@@ -44,6 +44,15 @@ function toggleStyle(id) {
 
     selected.classList.remove('bg-white', 'gray-text');
     selected.classList.add('bg-blue-500', 'text-white');
+
+    if(id == 'interview-filter-btn'){
+        allCardsSection.classList.add('hidden');
+        filteredSection.classList.remove('hidden');
+    }
+    else if(id == 'all-filter-btn'){
+        allCardsSection.classList.remove('hidden');
+        filteredSection.classList.add('hidden');
+    }
 }
 
 mainContainer.addEventListener('click', function (event) {
@@ -76,6 +85,7 @@ mainContainer.addEventListener('click', function (event) {
 
         if (!jobExist) {
             interViewList.push(cardInfo);
+            calculateCount();
         }
 
         renderInterview();
