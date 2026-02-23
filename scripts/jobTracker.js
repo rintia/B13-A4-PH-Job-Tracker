@@ -4,6 +4,7 @@ let rejectedList = [];
 let total = document.getElementById('total');
 let interviewCount = document.getElementById('interviewCount');
 let rejectedCount = document.getElementById('rejectedCount');
+let jobNumber = document.getElementById('job-number');
 
 // console.log(total, interviewCount, rejectedCount);
 
@@ -50,16 +51,19 @@ function toggleStyle(id) {
         allCardsSection.classList.add('hidden');
         rejectSection.classList.add('hidden');
         filteredSection.classList.remove('hidden');
+        jobNumber.innerText = interViewList.length;
     }
     else if(id == 'all-filter-btn'){
         allCardsSection.classList.remove('hidden');
         filteredSection.classList.add('hidden');
         rejectSection.classList.add('hidden');
+        jobNumber.innerText = allCardsSection.children.length;
     }
     else if(id == 'rejected-filter-btn'){
         allCardsSection.classList.add('hidden');
         filteredSection.classList.add('hidden');
         rejectSection.classList.remove('hidden');
+        jobNumber.innerText = rejectedList.length;
     }
 }
 
@@ -93,8 +97,13 @@ mainContainer.addEventListener('click', function (event) {
 
         if (!jobExist) {
             interViewList.push(cardInfo);
-            calculateCount();
+           
         }
+
+
+        rejectedList = interViewList.filter(item => item.jobName != cardInfo.jobName);
+        
+        calculateCount();
 
         renderInterview();
     }
@@ -126,8 +135,11 @@ mainContainer.addEventListener('click', function (event) {
 
         if (!jobExist) {
             rejectedList.push(cardInfo);
-            calculateCount();
         }
+
+        interViewList = rejectedList.filter(item => item.jobName != cardInfo.jobName)
+
+        calculateCount();
 
         renderReject();
     }
@@ -160,8 +172,8 @@ function renderInterview() {
 
     <!-- buttons -->
     <div class="space-x-2">
-        <button class="btn btn-outline text-[#10B981] hover:bg-[#10B981] hover:text-white">Interview</button>
-        <button class="btn btn-outline text-[#EF4444] hover:bg-[#EF4444] hover:text-white">Rejected</button>
+        <button class="interview-btn btn btn-outline text-[#10B981] hover:bg-[#10B981] hover:text-white">Interview</button>
+        <button class="rejected-btn btn btn-outline text-[#EF4444] hover:bg-[#EF4444] hover:text-white">Rejected</button>
     </div>
         `
         filteredSection.appendChild(div);
