@@ -18,6 +18,7 @@ const rejectedFilterBtn = document.getElementById('rejected-filter-btn');
 
 const filteredSection = document.getElementById('filtered-section');
 const rejectSection = document.getElementById('reject-section');
+const noCardSection = document.getElementById('no-card-section');
 
 // console.log(mainContainer);
 
@@ -28,7 +29,7 @@ const rejectSection = document.getElementById('reject-section');
 function calculateCount() {
     total.innerText = allCardsSection.children.length;
     interviewCount.innerText = interViewList.length;
-    rejectedCount.innerText = rejectedList.length
+    rejectedCount.innerText = rejectedList.length;
 }
 
 
@@ -50,24 +51,38 @@ function toggleStyle(id) {
     selected.classList.add('bg-blue-500', 'text-white');
 
     if(id == 'interview-filter-btn'){
+        noCardSection.classList.add('hidden')
         allCardsSection.classList.add('hidden');
         rejectSection.classList.add('hidden');
         filteredSection.classList.remove('hidden');
-        jobNumber.innerText = interViewList.length;
         renderInterview();
+        jobNumber.innerText = interViewList.length;
+        if(interViewList.length == 0){
+            noCardSection.classList.remove('hidden')
+        }
+       
     }
     else if(id == 'all-filter-btn'){
+        noCardSection.classList.add('hidden')
         allCardsSection.classList.remove('hidden');
         filteredSection.classList.add('hidden');
         rejectSection.classList.add('hidden');
         jobNumber.innerText = allCardsSection.children.length;
+        if(allCardsSection.children.length == 0){
+            noCardSection.classList.remove('hidden')
+        }
     }
     else if(id == 'rejected-filter-btn'){
         allCardsSection.classList.add('hidden');
         filteredSection.classList.add('hidden');
         rejectSection.classList.remove('hidden');
-        jobNumber.innerText = rejectedList.length;
         renderReject();
+        jobNumber.innerText = rejectedList.length;
+        noCardSection.classList.add('hidden');
+        if(rejectedList.length == 0){
+            noCardSection.classList.remove('hidden');
+        }
+        
     }
 }
 
@@ -121,11 +136,13 @@ mainContainer.addEventListener('click', function (event) {
 
         if(currentStatus == 'rejected-filter-btn'){
             renderReject();
+            jobNumber.innerText = rejectedList.length;
+            if(rejectedList.length == 0){
+                noCardSection.classList.remove('hidden')
+            }
         }
         
         calculateCount();
-
-
         
     }
 
@@ -164,10 +181,14 @@ mainContainer.addEventListener('click', function (event) {
 
         if(currentStatus == 'interview-filter-btn'){
             renderInterview();
+            jobNumber.innerText = interViewList.length;
+             if(interViewList.length == 0){
+                noCardSection.classList.remove('hidden')
+            }
         }
         calculateCount();
 
-        // renderReject();
+        
     }
 
     
@@ -194,7 +215,7 @@ function renderInterview() {
     </div>
 <p class="gray-color text-sm space-x-3"><span class="job-place">${interview.jobPlace} </span>• <span class="job-time">${interview.jobTime} </span> <span class="job-money">${interview.jobMoney}</span></p>
     <!-- badge -->
-    <div class="badge badge-md bg-[#EEF4FF] main-color p-4 font-bold">${interview.jobBadge.innerText}</div>
+    <div class="badge badge-md bg-green-100 main-color p-4 font-bold">${interview.jobBadge.innerText}</div>
     <p class="job-description">${interview.jobDescription}</p>
 
 
@@ -228,7 +249,7 @@ function renderReject() {
     </div>
 <p class="gray-color text-sm space-x-3"><span class="job-place">${reject.jobPlace} </span>• <span class="job-time">${reject.jobTime} </span> <span class="job-money">${reject.jobMoney}</span></p>
     <!-- badge -->
-    <div class="badge badge-md bg-[#EEF4FF] main-color p-4 font-bold">${reject.jobBadge.innerText}</div>
+    <div class="badge badge-md bg-red-100 main-color p-4 font-bold">${reject.jobBadge.innerText}</div>
     <p class="job-description">${reject.jobDescription}</p>
 
 
