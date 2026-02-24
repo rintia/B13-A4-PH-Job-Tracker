@@ -208,6 +208,14 @@ mainContainer.addEventListener('click', function (event) {
                 noCardSection.classList.remove('hidden')
             }
         }
+        else if(currentStatus == 'all' || currentStatus == 'all-filter-btn'){
+            jobCard.remove();
+            console.log(allCardsSection, allCardsSection.children.length);
+            jobNumber.innerText = allCardsSection.children.length;
+            if(allCardsSection.children.length == 0){
+                noCardSection.classList.remove('hidden')
+            }
+        }
 
         jobCard.remove();
         console.log(interViewList);
