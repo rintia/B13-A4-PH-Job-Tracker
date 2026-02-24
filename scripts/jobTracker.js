@@ -94,11 +94,6 @@ function deleteCard(id){
 
 mainContainer.addEventListener('click', function (event) {
 
-    // if(event.target.classList.contains('delete-btn')){
-    //     const parentNode = event.target.parentNode.parentNode;
-    //     console.log('clicked');
-    //     parentNode.remove();
-    // }
 
     if (event.target.classList.contains('interview-btn')) {
 
@@ -112,7 +107,8 @@ mainContainer.addEventListener('click', function (event) {
         const jobMoney = parentNode.querySelector('.job-money').innerText;
         const jobDescription = parentNode.querySelector('.job-description').innerText;
         jobBadge.innerText = 'Interview';
-        jobBadge.classList.add('bg-green-100')
+        jobBadge.classList.add('bg-green-100');
+        jobBadge.classList.remove('bg-red-100');
 
         const cardInfo = {
             jobName,
@@ -192,6 +188,34 @@ mainContainer.addEventListener('click', function (event) {
     }
 
     
+   else if(event.target.closest('.delete-btn')){
+        const deleteBtn = event.target.closest('.delete-btn')
+        const jobCard = deleteBtn.closest('.job-card');
+        const jobName = jobCard.querySelector('.job-name').innerText;
+        if(currentStatus == 'interview-filter-btn'){
+            interViewList = interViewList.filter(item => item.jobName != jobName);
+            jobNumber.innerText = interViewList.length;
+            console.log('interview-filter');
+            if(interViewList.length == 0){
+                noCardSection.classList.remove('hidden')
+            }
+        }
+        else if(currentStatus == 'rejected-filter-btn'){
+            rejectedList = rejectedList.filter(item => item.jobName != jobName);
+            jobNumber.innerText = rejectedList.length;
+            console.log('rejected-filter');
+            if(rejectedList.length == 0){
+                noCardSection.classList.remove('hidden')
+            }
+        }
+
+        jobCard.remove();
+        console.log(interViewList);
+        console.log(rejectedList);
+        calculateCount();
+   }
+
+    
 
 })
 
@@ -199,15 +223,15 @@ function renderInterview() {
     filteredSection.innerHTML = '';
 
     for (let interview of interViewList) {
-        console.log(interview);
+        // console.log(interview);
         let div = document.createElement('div');
-        div.className = "bg-white rounded-lg p-7 space-y-4 mb-8";
+        div.className = "job-card bg-white rounded-lg p-7 space-y-4 mb-8";
         div.innerHTML = `
         <div>
         <div class="flex justify-between">
     <h1 class="job-name text-xl font-bold main-color mb-1">${interview.jobName}</h1>
             <!-- delete button -->
-            <button class="btn border-none bg-white shadow-none p-0"><i
+            <button class="btn border-gray-300 rounded-full  delete-btn p-2 shadow-none"><i
                     class="fa-regular fa-trash-can"></i></button>
         </div>
 
@@ -235,13 +259,13 @@ function renderReject() {
     for (let reject of rejectedList) {
         console.log(reject);
         let div = document.createElement('div');
-        div.className = "bg-white rounded-lg p-7 space-y-4 mb-8";
+        div.className = "job-card bg-white rounded-lg p-7 space-y-4 mb-8";
         div.innerHTML = `
         <div>
         <div class="flex justify-between">
     <h1 class="job-name text-xl font-bold main-color mb-1">${reject.jobName}</h1>
             <!-- delete button -->
-            <button class="btn border-none bg-white shadow-none p-0"><i
+            <button class="btn border-gray-300 rounded-full  delete-btn p-2 shadow-none"><i
                     class="fa-regular fa-trash-can"></i></button>
         </div>
 
